@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="https://rawgit.com/btford/angular-socket-io/master/socket.min.js"></script>
+    </head>
+    <body ng-app="mySocket">
+        <div ng-controller="socketCtrl">
+            <p>{{messageFromServer}}</p>
+            <p>{{timeStamp}}</p>
+        </div>
+        <script>
+            angular.module("mySocket",["btford.socket-io"])
+            .factory('mySocketFactory', function (socketFactory) {
+                return socketFactory();
+            })
+            .controller("socketCtrl",["$scope","mySocketFactory",function($scope,mySocketFactory){
+                $scope.messageFromServer;
+                $scope.timeStamp;
+                var socket = io.connect('http://localhost:8001');
+
+                mySocketFactory.on('handshake0', function (data) {
+                    console.log(data);
+                    $scope.messageFromServer = data.hello;
+                    socket.emit('handshake1', { hello: 'acknowledge from client' });
+                });
+
+                mySocketFactory.on('time', function (data) {
+                    console.log(data);
+                    var date = new Date(data.ts);
+                    $scope.timeStamp = date.toUTCString();
+                });
+/*                var socket = io.connect('http://localhost:8082');
+                socket.on('handshake0', function (data) {
+                    console.log(data);
+                    $scope.messageFromServer = data.hello;
+                    socket.emit('handshake1', { hello: 'acknowledge from client' });
+                });
+                socket.on('time', function (data) {
+                    console.log(data);
+                    $scope.timeStamp = data.ts;
+                });
+
+                $scope.$on('socket:time', function (ev, data) {
+                    $scope.timeStamp = data.ts;
+                });
+*/
+
+            }]);
+            
+        </script>
+    </body>
+</html>
