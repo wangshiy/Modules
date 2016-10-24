@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <title>PalaSearch</title>
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+      <link href="css/animate.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+	  <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	  <script src="index.js"></script>
+	  <script src="left-slider.js"></script>
+   </head>
+   <body ng-app="palaSearch">
+      <div id="wrapper">
+<!--Shiyu left-slider -->
+<left-slider></left-slider>
+<!--Shiyu left-slider -->
+         <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+               <nav class="navbar navbar-fixed-top top-m-left" role="navigation" style="margin-bottom: 0">
+                  <div class="navbar-header">
+                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                  </div>
+                  <div class="user-info-top">
+                     <ul class="nav navbar-top-links">
+                        <li>
+                           <span class="m-t-md text-muted welcome-message">Welcome to PalaSearch.</span>
+                        </li>
+                        <li>
+                           <a href="account.html">
+                           <i class="fa fa-user"></i> <span class="text-navy" id="usr-name" ></span>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <ul class="nav navbar-top-links pull-right xs-right-mag">
+                     <li>
+                        <button id="fontResize" class="btn btn-primary btn-outline btn-sm m-t m-l-xs" type="button"><i class="fa fa-font"></i> <span class="xs-hide">Font size</span></button>              
+                     </li>
+                     <li>
+                        <div>
+                           <a href="#topNav" class="btn btn-primary btn-outline btn-xs m-t top-a m-l-xs" type="button"><i class="fa fa-arrow-up"></i> <span class="xs-hide">Go to top</span></a>  
+                        </div>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+            <div id="topNav" class="row wrapper border-bottom white-bg page-heading xs-no-l-mag">
+               <div class="col-lg-9">
+                  <ol class="breadcrumb">
+                     <li>
+                        <a href="search.html">Home</a>
+                     </li>
+                     <li class="active">
+                        <strong>    Search</strong>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+               <div class="row">
+                  <div class="col-lg-12 xs-no-pad">
+                     <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                           <div class="max-right-side">
+                              <h1>
+                                 Search Documents
+                              </h1>
+                              <div class="search-form">
+                                 <form id="searchForm" action="#" method="get">
+                                    <div class="input-group">
+                                       <input type="text" placeholder="Keyword Search" id="searchInput" name="search" class="form-control input-lg" id="myInput">
+                                       <div class="input-group-btn">
+                                          <button class="btn btn-lg btn-primary" type="submit">
+                                          <i class="fa fa-search" aria-hidden="true"></i> <span class="xs-hide">Search</span>
+                                          </button>
+                                       </div>
+                                    </div>
+                                    <!-- <div class="col-xs-12  m-t-sm m-b-sm p-l-no">
+                                       <a id="showCategory" type="button" class="btn btn-w-m btn-default"><i class="fa fa-filter" aria-hidden="true"></i> Choose filter</a>
+                                    </div> -->
+                                 </form>
+                              </div>
+                              <!-- Category talbe start -->
+                             <!--  <div id = "categoryTab"  class="m-t div-hide clearfix">
+                                 <label class="ck-button">
+                                 <input type="checkbox" value="1" checked><span>All</span>
+                                 </label>
+                                 <label class="ck-button">
+                                 <input type="checkbox" value="1"><span>Facebook</span>
+                                 </label>
+                                 <label class="ck-button">
+                                 <input type="checkbox" value="1"><span>WeChat</span>
+                                 </label>
+                                 <label class="ck-button">
+                                 <input type="checkbox" value="1"><span>Others</span>
+                                 </label>
+                                 <label class="ck-button">
+                                 <input type="checkbox" value="1"><span>Others</span>
+                                 </label>
+                              </div> -->
+							  <!-- Category talbe end -->
+							  <div id="srh-rst" class="hidden">
+								  <div class="hr-line-dashed clearfix"></div>
+								  <h5 id="srh-summary"></h5>
+								  <div class="hr-line-dashed"></div>
+								  <div id="srh-rst-group">
+									  <div class="search-result m-b-md">
+										 <button class="btn btn-primary btn-outline btn-xs m-l-xs pull-right" type="button"><i class="fa fa-share"></i></button>
+										 <button class="btn btn-primary btn-outline btn-xs m-l-xs pull-right" type="button"><i class="fa fa-trash-o"></i></button>
+										 <button class="btn btn-primary btn-outline btn-xs pull-right moreHit" type="button"><i class="fa fa-plus"></i></button>
+										 <h3><a href="#">INSPINIA IN+ Admin Theme</a> <span class="badge badge-primary">12</span></h3>
+										 <a href="#" class="search-link">www.inspinia.com/inspinia</a>
+										 <div class="moreItems">
+											<!-- hit items start  -->
+
+
+											<div class="hit-item show-first-hit">
+											   <p>
+												  Many desktop publishing <span class="text-navy"> packages </span> and web page editors now use Lorem Ipsum as their default model text, and. 
+											   </p>
+											   <div class="hr-line-dashed s-m-hr"></div>
+											</div>
+
+
+											<div class="hit-item show-first-hit">
+											   <p>
+												  Many desktop publishing packages and web <span class="text-navy"> packages </span>now use Lorem Ipsum as their default model text, and. 
+											   </p>
+											   <div class="hr-line-dashed s-m-hr"></div>
+											</div>
+
+
+											<div class="hit-item show-first-hit">
+											   <p>
+												  Many desktop publishing <span class="text-navy"> packages </span> web page editors now use Lorem Ipsum as their default model text, and. 
+											   </p>
+											   <div class="hr-line-dashed s-m-hr"></div>
+											</div>
+
+
+											<!-- hit items end -->
+										 </div>
+									  </div>
+									  
+								  </div>
+								  <div id="more" class="text-center hidden">
+									 <button type="button" class="btn btn-primary">
+									 MORE RESULT
+									 </button>
+								  </div>
+							  </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="footer">
+               <div class="pull-right">
+                  Welcome to <strong>PalaSearch</strong>.
+               </div>
+               <div>
+                  <strong>Copyright</strong> PalaSearch Company &copy; 2016
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Mainly scripts -->
+      <script src="js/jquery-2.1.1.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+      <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+      <!-- Custom and plugin javascript -->
+      <script src="js/inspinia.js"></script>
+      <script src="js/plugins/pace/pace.min.js"></script>
+	  <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+      <!-- Main javascript -->
+      <script src="js/main.js"></script>
+	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>
+	  <script src="js/pih.js"></script>
+	  <script>
+		 var pageNum = 1;
+		 var pageSize = 10;
+		 var keywords;
+		 function search(){
+			var data = $.pih.api.data;
+			var callback = function(error, data, res) {
+			  if (error) {
+				$.pih.handleError(res, function(msg, field){
+				  $.pih.createAlert($.pih.i18n.prop(msg,field)).insertBefore($('form'));
+				});
+			  } else {
+				$('#srh-rst').removeClass('hidden');
+				$('#srh-summary').html($.pih.i18n.prop('search.summary',data.totalDocs, data.keywords, parseInt(data.timeUsed)/1000));
+
+				//console.log(data);
+				var docLen = 0;
+				if(data.items)docLen = data.items.length;
+				if(data.offset + docLen < data.totalDocs){
+					$('#more').removeClass('hidden');
+					$('#more').one('click', function(){
+						console.log('search');
+						pageNum++;
+						search();
+					});
+				}else{
+					$('#more').addClass('hidden');
+				}
+				var container = $('#srh-rst-group');
+				var name = $('#usr-name').html();
+				for(var i = 0; i < docLen; i++){
+					var doc = data.items[i];
+					var link = doc.link;
+					var title = doc.title;
+					var id = doc.id;
+					var row = $("<div>", {
+						id: id,
+						class: 'search-result m-b-md'
+					}).appendTo(container);
+					
+					var f = $.pih.getField(doc, "Content");
+					var matched  = f == null ? 0 : f.matched.length;
+				
+					var share = $("<button>",{
+						class:'btn btn-primary btn-outline btn-xs m-l-xs pull-right share'
+					}).appendTo(row);
+
+					var href="mailto:?subject="+encodeURIComponent($.pih.i18n.prop("doc.share.subject",name))+"&body="+encodeURIComponent($.pih.i18n.prop("doc.share.body",link, title)) +"";
+
+					$('<i>',{
+						class:'fa fa-share'
+					}).appendTo(share);
+					
+					var del = $("<button>",{
+						class:'btn btn-primary btn-outline btn-xs m-l-xs pull-right del'
+					}).appendTo(row);
+					$("<i>",{
+						class:'fa fa-trash-o'
+					}).appendTo(del);
+					
+					if(matched > 1){
+						var more = $("<button>",{
+							class:'btn btn-primary btn-outline btn-xs pull-right moreHit'
+						}).appendTo(row);
+						$("<i>",{
+							class:'fa fa-plus'
+						}).appendTo(more);
+					}
+					var title = $("<h3>").appendTo(row);
+					$("<a>", {
+						href: link,
+						target: "_blank"
+					}).html($.pih.getFieldValue(doc, "Title")).appendTo(title);
+					
+					var hits = doc.hits;
+					if(hits == 0)hits = 1;
+					$("<span>", {
+						class: 'badge badge-primary'
+					}).html(hits + (doc.more?"+":"")).appendTo(title);
+
+					$("<a>", {
+						href: link,
+						class: 'search-link'
+					}).html($.pih.getFieldValue(doc, "Comments")).appendTo(row);
+					
+
+					if(matched == 1){
+						var m = "";
+						var line = parseInt(f.matched[0]);
+						for(var l = line - 1; l<= line + 1;l++){
+							if(f.lines[l])m = m + f.lines[l] + '<br>';
+						}
+						$("<p>").html(m).appendTo(row);
+						$("<div>",{
+							class: 'hr-line-dashed s-m-hr'
+						}).appendTo(row);
+					}else{
+						var more = $('<div>',{class:'moreItems'}).appendTo(row);
+						for(var ii = 0;ii  < matched; ii++){
+							var g = $('<div>',{class:'hit-item show-first-hit'}).appendTo(more);
+							
+							var m = "";
+							var line = parseInt(f.matched[ii]);
+							for(var l = line - 1; l<= line + 1;l++){
+								if(f.lines[l])m = m + f.lines[l] + '<br>';
+							}
+							$("<p>").html(m).appendTo(g);
+							$("<div>",{
+								class: 'hr-line-dashed s-m-hr'
+							}).appendTo(g);
+						}
+					}
+			 
+					
+				}			
+			  }
+			};
+			data.search(keywords, $.pih.getToken(), {p:pageNum+"_"+pageSize}, callback);
+		 }
+         require(['js/pih/client/index','js/3rd/jquery.i18n.properties.js'], function(data){
+			$.pih.loadLang();
+			$.pih.api = require('js/pih/client/index');
+			$.pih.api.data = new $.pih.api.DataApi();
+			$.pih.api.user = new $.pih.api.UserApi();
+			var callback = function(error, data, res) {
+			  if (error) {
+				$.pih.handleError(res, function(msg, field){
+				  alert($.pih.i18n.prop(msg));
+				});
+			  } else {
+				$('#usr-name').html(data.name);
+			  }
+			};
+			$.pih.api.user.getInfo($.pih.getToken(), callback);
+			$('#searchForm').on('submit', function(e) {
+				e.preventDefault();
+				var k = $("#searchInput").val();
+				keywords = k;
+				if(k.length == 0)return;
+				$('#srh-rst').addClass('hidden');
+				$('#srh-rst-group').empty();
+				pageNum = 1;
+				search();
+			});
+
+			//delete
+			$('#srh-rst-group').on('click', 'button.del', function() {
+				var container = $(this).parent();
+				var id = container.attr('id');
+				
+				swal({
+					title: $.pih.i18n.prop("are.you.sure"),
+					text: $.pih.i18n.prop("user.doc.delete.warnning"),
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: $.pih.i18n.prop("user.doc.delete.yes.btn"),
+					closeOnConfirm: false,
+					showLoaderOnConfirm: true,
+				}, function () {
+					var callback = function(error, data, res) {
+					  if (error) {
+						$.pih.handleError(res, function(msg, field){
+						  swal("Server Error",$.pih.i18n.prop(msg, $.pih.i18n.prop('Document')), "error");
+						});
+					  } else {
+						container.remove();
+						swal("", $.pih.i18n.prop("user.doc.delete.success"), "success");
+					  }
+					};
+					$.pih.api.data.callDelete($.pih.getToken(), "Document"+id, callback);
+				});
+			});
+			//share
+			$('#srh-rst-group').on('click', 'button.share', function() {
+				var name = $('#usr-name').html();
+				var a = $(this).parent().find('a');
+				var link = a.attr('href');
+				var title = a.html();
+				link = encodeURIComponent(link);
+				var href="mailto:?subject="+$.pih.i18n.prop("doc.share.subject",name)+"&body="+$.pih.i18n.prop("doc.share.body",link, title) +"";
+				location.href = href;
+			});
+		});
+      </script>
+   </body>
+</html>
