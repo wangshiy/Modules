@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="header-wrapper" style="margin-top: -12px;">
+        <div class="header-inner-wrapper">
+            <div class="header-left">
+                <a class="nav-toggle-btn gray-circle-btn " href="#"></a>
+                <a class="logo" style="margin-top: -5px;" href="/"></a>
+                <h1 class="page-title" style="font-size:21px;">Ultra Automation Services - AutoVNF</h1>
+            </div>
+        </div>
+    </header>
+    <!--
+    <div class="breadcrumb" style="margin-top:60px;width:100%;">
+        <a href="#" class="active" style="border-right:3px solid white;width:50%;text-align:center;height:50px;font-size:25px;padding-top:5px;background:#049fd9;">AutoIT</a>
+        <a href="#" style="width:50%;text-align:center;height:50px;font-size:25px;padding-top:5px;background:#049fd9;">AutoVNF</a>
+    </div>
+-->
+    <div class="container shadow panelstyle" style="margin:0px auto;margin-top:100px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">AutoIT</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-3 text-center">
+                    <div id="advancedDropzone" class="droppable-area dz-clickable" onclick="$('#advancedDropzone').click()">
+                        Drop File Here
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <p>Please specify the deployment YAML file. Note that you can select/drop a single file and it should be in YAML format.</p>
+                    <br>
+                    <table class="table table-bordered table-striped" id="deployment-dropzone-filetable">
+                        <thead>
+                            <tr>
+                                <th width="30%">Name</th>
+                                <th>Size</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5">Files list will appear here</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" id="submitbutton" disabled style="float:right;" class="btn btn-success" data-dismiss="modal">Deploy</button>
+                    <button type="button" id="undeployBtn" disabled style="float:right;" class="btn btn-danger" data-dismiss="modal">Undeploy</button>
+                </div>
+            </div>
+            <!---Modal -->
+            <!-- <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                   
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <!-- <div>
+        <input class="hidden" type="file" id="files" name="files[]" multiple accept="text/xml" />
+        <button class="btn btn-green" onclick="$('#files').click()" title="Upload the xml files"><i class="fa fa-upload"></i> Upload &nbsp;&nbsp;</button>
+        <button disabled id="postVnfmBtn" class="btn btn-green"> Start Deploy</button>
+    </div>-->
+    <!--<button class="button" style="margin-top : 100px; margin-left: 27px;">AutoIT</button>
+    <button class="button" style="margin-top : 100px">AutoVNF</button>-->
+    <script>
+    //document.getElementById("postVnfmBtn").disabled = true;
+    $(document).ready(function() {
+        var step = window.location.href.split("/")[3];
+        var task = window.location.href.split("/")[4];
+        if (step === "uas_wizard") {
+            if (task === "deploy") {
+                $("#undeployBtn").css("display", "none");
+                $(".panel-title").html("VNFM Deploy");
+            } else if (task === "undeploy") {
+                $("#submitbutton").css("display", "none");
+                $(".panel-title").html("VNFM Undeploy");
+            }
+        } else if (step === "uas_autovnf") {
+            if (task === "deploy") {
+                $("#undeployBtn").css("display", "none");
+                $(".panel-title").html("VNF Deploy");
+            } else if (task === "undeploy") {
+                $("#submitbutton").css("display", "none");
+                $(".panel-title").html("VNF Undeploy");
+            }
+        }
+        var i = 1,
+            $deployment_dropzone_filetable = $("#deployment-dropzone-filetable"),
+            deploymenet_dropzone = $("#advancedDropzone").dropzone({
+                url:"/vnfm/deploy",
+                autoProcessQueue: false,
+                maxFiles: 1,
+                acceptedFiles: ".yaml",
+                // Events
+                maxfilesexceeded: function(file) {
+                    this.removeAllFiles();
+                    this.addFile(file);
+                },
+                addedfile: function(file) {
+                    if (i == 1) {
+                        $deployment_dropzone_filetable.find('tbody').html('');
+                    }
+                    var size = parseInt(file.size / 1024, 10);
+                    size = size < 1024 ? (size + " KB") : (parseInt(size / 1024, 10) + " MB");
+
+                    var $entry = $('<tr>\
+                                                        <td>' + file.name + '</td>\
+                                                        <td>' + size + '</td>\
+                                                        <td>Adding File...</td>\
+                                                    </tr>');
+
+                    $deployment_dropzone_filetable.find('tbody').append($entry);
+                    file.fileEntryTd = $entry;
+                    file.fileEntryTd.find('td:last').html('<span class="text-success">Added</span>');
+                    $("#deployment-dropzone-filetable").trigger('enableButton');
+                    document.getElementById("submitbutton").disabled = false;
+                    document.getElementById("undeployBtn").disabled = false;
+
+                    var reader = new FileReader();
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+                            console.log("targetObj: ", e.target.result);
+                            yamlStr = e.target.result;
+                        };
+                    })(file);
+                    reader.readAsText(file);
+
+                },
+                removedfile: function(file) {
+                    $deployment_dropzone_filetable.find('tbody').empty();
+                }
+
+            });
+
+
+        $("#advancedDropzone").css({
+            minHeight: 150
+        });
+
+        var yamlStr;
+        var statusUrl;
+
+        function handleFileSelect(evt) {
+            var files = evt.target.files;
+            for (var i = 0, f; f = files[i]; i++) {
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        console.log("targetObj: ", e.target.result);
+                        yamlStr = e.target.result;
+                        if (yamlStr) {
+                            document.getElementById("postVnfmBtn").disabled = false;
+                        }
+                    };
+                })(f);
+                reader.readAsText(f);
+            }
+        }
+
+        $("#files").on("change", handleFileSelect);
+
+        $("#getLogsBtn").on('click', function() {
+            //ajaxHelper("http://172.28.185.218:5000/logs", "GET", "json", "application/json", false);
+
+            $.ajax({
+                url: window.location.origin + "/logs",
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                success: function(data) {
+                    var logs = JSON.stringify(data);
+                    $("#logsPlaceholder").val(logs);
+                },
+                error: function() {
+                    console.log("Cannot get data");
+                }
+            });
+
+        });
+
+        $("#submitbutton").on('click', function() {
+            var yamlBinary = window.btoa(yamlStr);
+            if (step === "uas_wizard") {
+                $.ajax({
+                    url: window.location.origin + "/vnfm/deploy",
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'text/x-yaml',
+                    processData: false,
+                    data: yamlStr,
+                    success: function(data) {
+                        var logs = JSON.stringify(data);
+                        $("#logsPlaceholder").val(logs);
+                        statusUrl = data['status-url'];
+                        var id = statusUrl.split('/')[2];
+                        window.location.href = window.location.origin + "/vnfm/" + id + "/deploy";
+                    },
+                    error: function() {
+                        console.log("Cannot get data");
+                    }
+                });
+            } else if (step === "uas_autovnf") {
+                $.ajax({
+                    url: window.location.origin + "/vnf/deploy",
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'text/x-yaml',
+                    processData: false,
+                    data: yamlStr,
+                    success: function(data) {
+                        var logs = JSON.stringify(data);
+                        $("#logsPlaceholder").val(logs);
+                        statusUrl = data['status-url'];
+                        var id = statusUrl.split('/')[2];
+                        window.location.href = window.location.origin + "/vnf/" + id + "/deploy";
+                    },
+                    error: function() {
+                        console.log("Cannot get data");
+                    }
+                });
+            }
+
+        });
+
+        $("#undeployBtn").on('click', function() {
+            if (step === "uas_wizard") {
+                $.ajax({
+                    url: window.location.origin + "/vnfm/destroy",
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'text/x-yaml',
+                    processData: false,
+                    data: yamlStr,
+                    success: function(data) {
+                        statusUrl = data['status-url'];
+                        var id = statusUrl.split('/')[2];
+                        window.location.href = window.location.origin + "/vnfm/" + id + "/undeploy";
+                    },
+                    error: function() {
+                        console.log("Cannot get data");
+                    }
+                });
+            } else if (step === "uas_autovnf") {
+                $.ajax({
+                    url: window.location.origin + "/vnf/destroy",
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'text/x-yaml',
+                    processData: false,
+                    data: yamlStr,
+                    success: function(data) {
+                        statusUrl = data['status-url'];
+                        var id = statusUrl.split('/')[2];
+                        window.location.href = window.location.origin + "/vnf/" + id + "/undeploy";
+                    },
+                    error: function() {
+                        console.log("Cannot get data");
+                    }
+                });
+            }
+
+        });
+
+
+        $("#getVnfmStatusBtn").on('click', function() {
+
+            var url = window.location.origin + statusUrl;
+            console.log("url: ", url);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                success: function(data) {
+                    var logs = JSON.stringify(data);
+                    $("#logsPlaceholder").val(logs);
+                },
+                error: function() {
+                    console.log("Cannot get data");
+                }
+            });
+
+        });
+
+
+
+        function ajaxHelper(url, type, dataType, contentType, processData) {
+            $.ajax({
+                url: url,
+                type: type,
+                dataType: dataType,
+                contentType: contentType,
+                processData: processData,
+                success: function(data) {
+                    var logs = JSON.stringify(data);
+                    $("#logsPlaceholder").val(logs);
+                },
+                error: function() {
+                    console.log("Cannot get data");
+                }
+            });
+        }
+
+    });
+    </script>
+    <style>
+    .breadcrumb {
+        /*centering*/
+        display: inline-block;
+        /*  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);*/
+        overflow: hidden;
+        border-radius: 5px;
+        /*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
+        counter-reset: flag;
+    }
+    
+    .breadcrumb a {
+        text-decoration: none;
+        outline: none;
+        display: block;
+        float: left;
+        font-size: 12px;
+        line-height: 38px;
+        /*color: white;*/
+        /*need more margin on the left of links to accomodate the numbers*/
+        padding: 0 10px 0 60px;
+        background: #666;
+        background: linear-gradient(#666, #333);
+        position: relative;
+    }
+    /*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+    
+    .breadcrumb a:first-child {
+        padding-left: 46px;
+        border-radius: 5px 0 0 5px;
+        /*to match with the parent's radius*/
+    }
+    
+    .breadcrumb a:first-child:before {
+        left: 14px;
+    }
+    
+    .breadcrumb a:last-child {
+        border-radius: 0 5px 5px 0;
+        /*this was to prevent glitches on hover*/
+        padding-right: 20px;
+    }
+    /*hover/active styles*/
+    
+    .breadcrumb a.active,
+    .breadcrumb a:hover {
+        color: white;
+        background: #333;
+        background: linear-gradient(#333, #000);
+    }
+    
+    .breadcrumb a.active:after,
+    .breadcrumb a:hover:after {
+        background: #333;
+        background: linear-gradient(135deg, #333, #000);
+    }
+    /*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+    /*    
+    .breadcrumb a:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -18px;
+        width: 36px;
+        height: 36px;
+        transform: scale(0.707) rotate(45deg);
+        z-index: 1;
+        background: #666;
+        background: linear-gradient(135deg, #666, #333);
+        border-radius: 0 5px 0 50px;
+    }
+*/
+    /*we dont need an arrow after the last link*/
+    
+    .breadcrumb a:last-child:after {
+        content: none;
+    }
+    /*we will use the :before element to show numbers*/
+    
+    .breadcrumb a:before {
+        /*  content: counter(flag);*/
+        counter-increment: flag;
+        /*some styles now*/
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        margin: 8px 0;
+        position: absolute;
+        top: 0;
+        left: 30px;
+        background: #444;
+        background: linear-gradient(#444, #222);
+        font-weight: bold;
+    }
+    
+    .panelstyle {
+        padding-top: 20px;
+        margin-left: 10px;
+        background-color: white;
+    }
+    
+    p {
+        color: rgb(151, 152, 152);
+    }
+    
+    p {
+        margin: 0px 0px 10px;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    p {
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+    
+    .droppable-area.dz-clickable {
+        cursor: pointer;
+    }
+    
+    .shadow {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .droppable-area {
+        display: inline-block;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+        font-size: 15px;
+        color: rgb(100, 101, 101);
+        -webkit-background-clip: padding-box;
+        min-height: 150px;
+        background: padding-box rgb(237, 237, 237);
+        border-width: 2px;
+        border-style: dashed;
+        border-color: rgb(179, 179, 179);
+        border-radius: 50%;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        /* background: #ccc;*/
+        background: #f2f2f2;
+    }
+    
+    .btn {
+        margin: 15px 0;
+        /*border-radius: 20px;*/
+        font-size: 14px;
+    }
+    /* line 37, stdin */
+    
+    .btn-green {
+        background-color: #ACC333;
+        color: #58585b !important;
+        font-family: CiscoSansBold, 'Helvetica Neue Bold', ArialBold, Arial, sans-serif !important;
+        font-weight: bold !important;
+    }
+    /* line 44, stdin */
+    
+    .btn-green:hover {
+        background-color: #8AA019 !important;
+        color: white !important;
+    }
+    
+    .nav ul {
+        list-style: none;
+        background-color: #444;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .nav li {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.2em;
+        line-height: 40px;
+        height: 40px;
+        border-bottom: 1px solid #888;
+    }
+    
+    .nav a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        transition: .3s background-color;
+    }
+    
+    .nav a:hover {
+        background-color: #005f5f;
+    }
+    
+    .nav a.active {
+        background-color: #ccc;
+        color: #444;
+        cursor: default;
+    }
+    
+    @media screen and (min-width: 600px) {
+        .nav li {
+            width: 120px;
+            border-bottom: none;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.4em;
+        }
+        /* Option 1 - Display Inline */
+        .nav li {
+            display: inline-block;
+            margin-right: -4px;
+        }
+        /* Options 2 - Float
+  .nav li {
+    float: left;
+  }
+  .nav ul {
+    overflow: auto;
+    width: 600px;
+    margin: 0 auto;
+  }
+  .nav {
+    background-color: #444;
+  }
+  */
+    }
+    
+    .button {
+        background-color: #8AA019;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    
+    .header-wrapper {
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        transition: margin-left 300ms, margin-right 300ms;
+        width: auto;
+        min-height: 70px;
+        clear: both;
+        overflow-y: hidden;
+        overflow-x: auto;
+        z-index: 5;
+    }
+    
+    .page-title {
+        font-weight: 100;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        vertical-align: top;
+        float: left;
+    }
+    
+    .header-inner-wrapper {
+        min-width: 1400px;
+    }
+    
+    .logo {
+        width: 58px;
+        height: 30px;
+        margin-right: 25px;
+        float: left;
+        background-image: url('logo-cisco.svg');
+        background-repeat: no-repeat;
+        background-size: 75%;
+        background-position: center center;
+    }
+    
+    .header-left {
+        padding: 33px 15px 0px 30px;
+        float: left;
+    }
+    </style>
+</body>
+
+</html>
