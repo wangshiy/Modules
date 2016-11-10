@@ -47,4 +47,12 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         
 });
 
+routerApp.run(function($rootScope, $location, $state) {
+    // Event handler so we can enforce auth on protected pages
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        console.log ("stateChangeStart from:"+fromState.name+" to:"+toState.name);
+    });
+});
+
+
 
