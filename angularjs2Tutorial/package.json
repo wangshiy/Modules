@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "4.0.0-rc.1",
+    "@angular/common": "4.0.0-rc.1",
+    "@angular/compiler": "4.0.0-rc.1",
+    "@angular/core": "4.0.0-rc.1",
+    "@angular/forms": "4.0.0-rc.1",
+    "@angular/http": "4.0.0-rc.1",
+    "@angular/platform-browser": "4.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "4.0.0-rc.1",
+    "@angular/router": "4.0.0-rc.1",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.1",
+    "@ngrx/store-devtools": "^3.2.3",
+    "@ngrx/store-log-monitor": "^3.0.2",
+    "@oasisdigital/live-server": "1.2.0",
+    "angularfire2": "2.0.0-beta.8",
+    "core-js": "2.4.1",
+    "firebase": "3.6.10",
+    "lodash-es": "4.17.4",
+    "rxjs": "5.1.1",
+    "zone.js": "0.7.7"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "4.0.0-rc.1",
+    "@types/jasmine": "^2.5.43",
+    "@types/lodash-es": "^4.14.4",
+    "concurrently": "^3.3.0",
+    "copyfiles": "^1.2.0",
+    "jasmine-core": "^2.5.2",
+    "json-server": "^0.9.5",
+    "rollup": "^0.41.4",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.1",
+    "rollup-plugin-uglify": "^1.0.1",
+    "tslint": "^4.4.2",
+    "typescript": "2.2.1"
+  },
+  "scripts": {
+    "fixdb": "copyfiles -f demo-data/backup/db.json demo-data",
+    "live": "live-server --no-browser --no-css-inject --wait=200 --proxy=/api:http://localhost:8085 --port=8081 -q",
+    "json": "json-server --port 8085 --host 0.0.0.0 --delay 200 --watch demo-data/db.json",
+    "start": "concurrently --kill-others \"npm run live\" \"npm run json\""
+  }
+}

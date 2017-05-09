@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col s4">
+    <section class="card">
+      <div class="card-content">
+        <span class="card-title">Click Events</span>
+        <p>Counter: {{ n }}</p>
+        <button class="btn" (click)="increment()">Add One</button><!-- (click) is to set onClick event by angular instead of customzied ng-click -->
+        <div (click)="increment()"> Also a clickable thing </div>
+      </div>
+    </section>
+  </div>
+  <div class="col s4">
+    <section class="card">
+      <div class="card-content">
+        <span class="card-title">Mouse Events</span>
+        <div (mouseover)="over($event)" (mousemove)="move($event)">
+          Mouse events on this
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-content">
+        <span class="card-title">Mouse Events</span>
+        <input (keydown)="keydown($event)"/>
+          Keyboard events on this
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-content">
+        <span class="card-title">Mouse Events</span>
+        <textarea (copy)="copy($event)">
+          Clipboard events on this
+        </textarea>
+      </div>
+    </section>
+  </div>
+</div>
