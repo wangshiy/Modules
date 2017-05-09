@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app="BootcampApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Routing Expanded</title>
+    <link rel="stylesheet" href="../lib/style.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo left">
+          <a href="http://www.angularbootcamp.com"></a>
+          <span>Routing Expanded</span>
+        </div>
+        <ul class="right">
+          <li>
+            <a href="https://docs.angularjs.org/api/ngRoute">Routing docs</a>
+          </li>
+          <li><a href="../">Lesson List</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <custom-header></custom-header>
+      <ng-view></ng-view>
+      <footer-bar></footer-bar>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="../lib/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="misc.js"></script>
+    <script src="green.js"></script>
+    <script src="yellow.js"></script>
+    <script src="footer.js"></script>
+  </body>
+</html>

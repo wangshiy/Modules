@@ -1,0 +1,24 @@
+<html ng-app='swapp'>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css">
+  <link rel="stylesheet" href="styles.css">
+  <title ng-bind="title()">Default</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <ng-view></ng-view>
+  </div>
+
+  <!--Lib Files-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-messages.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+
+  <!--App Files-->
+  <script src="all.js"></script>
+</body>
+
+</html>

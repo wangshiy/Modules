@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">ng-bind (treat HTML data string as text)</span>
+    <p ng-bind="dc.unsafeHtml"></p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">ng-bind-html (treat HTML data string as HTML)</span>
+    <p>Potentially unsafe attributes, such as "onmouseover", "ng-click", "style", etc. were removed from the following</p>
+    <p ng-bind-html="dc.unsafeHtml"></p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">$sce.trustAsHtml (treat HTML data string as HTML, no sanitization)</span>
+    <p ng-bind-html="dc.trustedHtml"></p>
+  </div>
+</div>

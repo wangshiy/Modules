@@ -1,0 +1,9 @@
+<h2>Name your Character</h2>
+<form name="characterForm" novalidate>
+  <input name="name" type="text" placeholder="Character Name" ng-model="name" ng-model-options="{debounce: 300}" required>
+  <ng-messages ng-show="characterForm.$dirty || characterForm.name.$touched" for="characterForm.name.$error">
+    <ng-message when="required">
+      A character name is required
+    </ng-message>
+  </ng-messages>
+</form>

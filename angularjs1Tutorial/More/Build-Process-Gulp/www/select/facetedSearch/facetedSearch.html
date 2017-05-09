@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-4">
+    <div class="category-sex">
+      <label>Sex:
+        <button class="pref-button" ng-click="searchFields.gender = 'm'" ng-class="{'selected': searchFields.gender == 'm'}">Male</button>
+        <button class="pref-button" ng-click="searchFields.gender = 'f'" ng-class="{'selected': searchFields.gender == 'f'}">Female</button>
+        <button class="pref-button" ng-click="searchFields.gender = 'n'" ng-class="{'selected': searchFields.gender == 'n'}">Other</button>
+        <button class="pref-button" ng-click="searchFields.gender = ''" ng-class="{'selected': searchFields.gender == ''}" name="sex-all">All</button>
+      </label>
+    </div>
+  </div>
+  <div class="col-xs-3">
+    <div class="category-race">
+      <label>Race:
+        <button class="pref-button" ng-click="searchFields.race = 'human'" ng-class="{'selected': searchFields.race == 'human'}">Human</button>
+        <button class="pref-button" ng-click="searchFields.race = 'droid'" ng-class="{'selected': searchFields.race == 'droid'}">Droid</button>
+        <button class="pref-button" ng-click="searchFields.race = ''" ng-class="{'selected': searchFields.race == ''}" name="race-all">All</button>
+      </label>
+    </div>
+  </div>
+  <div class="col-xs-5">
+    <div class="category-stat-pref">
+      <label>Stat Preference:
+        <button class="pref-button" ng-click="searchFields.statPref = 'str'" ng-class="{'selected': searchFields.statPref == 'str'}">Strength</button>
+        <button class="pref-button" ng-click="searchFields.statPref = 'dex'" ng-class="{'selected': searchFields.statPref == 'dex'}">Dexterity</button>
+        <button class="pref-button" ng-click="searchFields.statPref = ''" ng-class="{'selected': searchFields.statPref == ''}">None</button>
+      </label>
+    </div>
+  </div>
+</div>

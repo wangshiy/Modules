@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">One request, three tasks</span>
+    <button class="btn" ng-click="$ctrl.login()">Login</button>
+    <p>Login Status:</p>
+    <pre>{{$ctrl.loginStatus | json}}</pre>
+    <div ng-show="$ctrl.loginStatus">
+      <p>Login Data Shown Here</p>
+      <pre>{{$ctrl.loginData | json}}</pre>
+    </div>
+  </div>
+</div>

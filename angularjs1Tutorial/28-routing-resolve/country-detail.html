@@ -1,0 +1,16 @@
+<div class="card horizontal">
+  <div class="card-image">
+    <img ng-src="../demo-data/flags/{{cdc.country.code | lowercase}}.png" class="flag">
+  </div>
+  <div class="card-stacked">
+
+    <div class="card-content">
+      <span class="card-title">{{cdc.country.name}}</span>
+      <p>Capital: {{cdc.country.capital}}</p>
+      <p>Largest City: {{cdc.country.largest_city}}</p>
+      <p>Area (sq.mi.): {{cdc.country.area_sq_mi}}</p>
+      <p>GDP (total): {{cdc.country.gdp.total}}</p>
+      <p>GDP (per capita): {{cdc.country.gdp.per_capita}}</p>
+    </div>
+  </div>
+</div>

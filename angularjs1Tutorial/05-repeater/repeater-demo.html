@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Large Countries</span>
+    <ul class="collection">
+      <li class="collection-item" ng-repeat="country in $ctrl.countries">
+        <b>{{country.countryName}}</b>
+        <p>Capital: {{country.capital}}</p>
+        <p>Population: {{country.population}}</p>
+        <p>Area (sq.km): {{country.areaInSqKm}}</p>
+      </li>
+    </ul>
+  </div>
+</div>

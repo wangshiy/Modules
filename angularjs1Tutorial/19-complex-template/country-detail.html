@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col s12">
+
+    <div class="card horizontal">
+      <div class="card-image">
+        <img ng-src="../demo-data/flags/{{cd.country.code | lowercase}}.png" class="flag">
+      </div>
+      <div class="card-stacked">
+
+        <div class="card-content">
+          <span class="card-title">{{cd.country.name}}</span>
+          <p>Capital: {{cd.country.capital}}</p>
+          <p>Largest City: {{cd.country.largest_city}}</p>
+          <p>Area (sq.mi.): {{cd.country.area_sq_mi}}</p>
+          <p>GDP (total): {{cd.country.gdp.total}}</p>
+          <p>GDP (per capita): {{cd.country.gdp.per_capita}}</p>
+        </div>
+        <div class="card-action">
+          <button class="btn" ng-click="cd.showEthnicGroups = !cd.showEthnicGroups">Ethnic Groups</button>
+          <button class="btn" ng-click="cd.toggleGovt()">Officials</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col m6 s12">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{cd.country.name}} ethnic groups</span>
+        <table ng-show="cd.showEthnicGroups">
+          <tr>
+            <th>Ethnicity</th>
+            <th>Percentage</th>
+          </tr>
+          <tr ng-repeat="g in cd.country.ethnic_groups">
+            <td>{{g.ethnicity}}</td>
+            <td ng-class="{highlight: g.pct > 10}">{{g.pct}}%</td>
+          </tr>
+        </table>
+        <p ng-hide="cd.showEthnicGroups">(Ethnic groups hidden)</p>
+      </div>
+    </div>
+  </div>
+  <div class="col m6 s12">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{cd.country.name}} officials</span>
+        <dl ng-if="cd.showGovt">
+          <dt ng-repeat-start="o in cd.country.government_officials">{{o.title}}:</dt>
+          <dd ng-repeat-end>{{o.name}}</dd>
+        </dl>
+        <p ng-if="!cd.showGovt">(Government Officials removed)</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+        <span class="title">{{cd.country.name}} documents</span>
+        <select ng-model="cd.otherInfo">
+                <option value=""></option>
+                <option value="docs">Important Documents</option>
+                <option value="currency">Currency</option>
+              </select>
+        <div ng-switch on="cd.otherInfo">
+          <ul ng-switch-when="docs">
+            <li ng-repeat="d in cd.country.documents">{{d.name}}: {{d.date}}</li>
+          </ul>
+          <p ng-switch-when="currency">{{cd.country.currency.description}} ({{cd.country.currency.code}})</p>
+          <p ng-switch-default>(No info selected)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

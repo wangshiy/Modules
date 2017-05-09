@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Change the text</span>
+    <label for="changeme">Change me:</label>
+    <input id="changeme" ng-model="mc.address">
+    <p>Resulting text: {{mc.address}}</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Experiments</span>
+    <input id="ifcheck" type="checkbox" ng-model="mc.ngIf"><label for="ifcheck"> ngIf (produce DOM)</label>
+    <input id="showcheck" type="checkbox" ng-model="mc.ngShow"><label for="showcheck">ngShow (render to screen)</label>
+    <div ng-if="mc.ngIf" ng-show="mc.ngShow">
+      <!-- Try :: -->
+      <span ng-repeat="x in mc.boxes">
+        <span ng-bind="mc.address"></span>
+      </span>
+    </div>
+  </div>
+</div>

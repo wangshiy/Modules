@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Debounced Input:</span>
+    <input type="text" ng-model="moc.debouncedModel" ng-model-options="{debounce: 1000}">
+    <span ng-bind="'Output: ' + moc.debouncedModel"></span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Update on Blur Input:</span>
+    <input type="text" ng-model="moc.onBlurModel" ng-model-options="{updateOn: 'blur'}">
+    <span ng-bind="'Output: ' + moc.onBlurModel"></span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Update on Mouseover Input:</span>
+    <input type="text" ng-model="moc.onMouseoverModel" ng-model-options="{updateOn: 'mouseover'}">
+    <span ng-bind="'Output: ' + moc.onMouseoverModel"></span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Email Default Settings Input:</span>
+    <input type="email" ng-model="moc.defaultEmail">
+    <span ng-bind="'Output: ' + moc.defaultEmail"></span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Email Allow Invalid Input:</span>
+    <input type="email" ng-model="moc.invalidEmail" ng-model-options="{allowInvalid: true}">
+    <span ng-bind="'Output: ' + moc.invalidEmail"></span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Getter/Setter Input:</span>
+    <input type="text" ng-model="moc.getSet" ng-model-options="{getterSetter: true}">
+    <span ng-bind="'Output: ' + moc.getSet()"></span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> Arbitrarily Combine Options Input</span>
+    <p>(debounced, update on mouseover):</p>
+    <input type="email" ng-model="moc.combined" ng-model-options="{allowInvalid: true, debounce: 500, updateOn: 'mouseover'}">
+    <span ng-bind="'Output: ' + moc.combined"></span>
+  </div>
+</div>

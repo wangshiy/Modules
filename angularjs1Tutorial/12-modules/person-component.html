@@ -1,0 +1,16 @@
+<div>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Player Name</span>
+      <p>Name is: {{$ctrl.name}}</p>
+      <p>(expected to see "Jim")</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{$ctrl.name}}'s hand</span>
+      <card-block ng-repeat="d in $ctrl.deck"></card-block>
+      <p>(expected to see 10 cards)</p>
+    </div>
+  </div>
+</div>

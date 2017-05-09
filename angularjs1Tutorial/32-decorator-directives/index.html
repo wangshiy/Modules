@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="exampleApp">
+  <head>
+    <meta charset="utf-8">
+    <title>More Directives</title>
+    <link rel="stylesheet" href="../lib/style.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo left">
+          <a href="http://www.angularbootcamp.com"></a>
+          <span>More Directives</span>
+        </div>
+        <ul class="right">
+          <li>
+            <a href="https://docs.angularjs.org/guide/directive">Directive docs</a>
+          </li>
+          <li><a href="../">Lesson List</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Bounce</span>
+          <p bounce>This bounces</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Drag</span>
+          <p make-draggable>Drag Me!</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Blink</span>
+          <input id="checkme" type="checkbox" ng-model="checked"><label for="checkme">Toggle:</label>
+          <p ng-if="checked" blink>
+            <a href="https://web.archive.org/web/20150603201534/http://www.ng-eocities.com/">
+                This blinks like it is 1999
+              </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="time.js"></script>
+    <script src="drag.js"></script>
+  </body>
+</html>

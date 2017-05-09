@@ -1,0 +1,23 @@
+{
+  "name": "unit-testing-example",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Angular unit tests",
+  "scripts": {
+    "start": "karma start",
+    "test": "karma start  --single-run"
+  },
+  "author": "",
+  "license": "none",
+  "devDependencies": {
+    "angular-mocks": "^1.6.2",
+    "jasmine-core": "^2.5.2",
+    "karma": "~1.4.1",
+    "karma-chrome-launcher": "~2.0.0",
+    "karma-jasmine": "~1.1.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.2"
+  }
+}

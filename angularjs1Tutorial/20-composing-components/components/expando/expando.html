@@ -1,0 +1,11 @@
+<div class='card'>
+  <div class="card-content">
+    <span class="card-title">{{ec.heading}}
+      <button class="btn xs" ng-click="ec.show = !ec.show">...</button>
+    </span>
+    <div ng-if="ec.show">
+      <!-- Sometimes people use the attribute form just to avoid repetition. -->
+      <div ng-transclude></div>
+    </div>
+  </div>
+</div>

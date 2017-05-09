@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Country Stats</span>
+      <ul class="collection">
+        <li class="collection-item" ng-repeat="c in $ctrl.countries">
+          <b>{{c.countryName}}</b>
+          <span> Population: {{c.population}}</span>
+        </li>
+      </ul>
+  </div>
+</div>

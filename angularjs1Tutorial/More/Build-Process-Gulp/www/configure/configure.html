@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-sm-6 col-md-push-2 col-md-4">
+    <stats-form stats="cc.userStats"></stats-form>
+  </div>
+  <div class="col-sm-6 col-md-push-2 col-md-4">
+    <character-card character="cc.characterDetails()"></character-card>
+    <a ng-click="cc.goToSummary()" class="btn btn-primary" ng-disabled="cc.userStats.pointsUsed > cc.userStats.totalPoints">Next</a>
+  </div>
+</div>

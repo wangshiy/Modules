@@ -1,0 +1,23 @@
+<div class="archetype-panel">
+  <h3>{{archetype.name}}</h3>
+  <a ng-click="enabled && action()">
+    <img class="meme" ng-src="{{archetype.imageUrl}}">
+  </a>
+  <dl class="dl-horizontal">
+    <dt>Born:</dt>
+    <dd>{{archetype.birth_year}}</dd>
+    <dt>Height:</dt>
+    <dd>{{archetype.height | StringCentimetersToNumberFeet | number:1}} ft.</dd>
+    <dt>Mass:</dt>
+    <dd>{{archetype.mass}} kg</dd>
+    <dt>Strength:</dt>
+    <dd>{{archetype.baseStr}}</dd>
+    <dt>Dexterity:</dt>
+    <dd>{{archetype.baseDex}}</dd>
+    <dt>Hair Color</dt>
+    <dd>{{archetype.hair_color}}</dd>
+  </dl>
+  <div class="text-center">
+    <a ng-click="enabled && action()" ng-disabled="!enabled" class="btn btn-default">Choose</a>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">How does angular know about these changes?</span>
+    <label for="changeme">Change me:</label>
+    <input id="changeme" ng-model="ac.address">
+    <button ng-click="ac.foo()">Reset Address</button>
+    <p>Resulting Address: {{ac.address}}</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">See the console for how many times this has been calculated</span>
+    <p>count = {{ac.count()}}</p>
+  </div>
+</div>

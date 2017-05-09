@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="app1">
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Filters</title>
+    <link rel="stylesheet" href="../lib/style.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo left">
+          <a href="http://www.angularbootcamp.com"></a>
+          <span>Custom Filters</span>
+        </div>
+        <ul class="right">
+          <li>
+            <a href="https://docs.angularjs.org/guide/directive">Directive Guide in the AngularJS documentation</a>
+          </li>
+          <li><a href="../">Lesson List</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <country-view></country-view>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <!--order matters here-->
+    <script src="logic-outside-angular.js"></script>
+    <script src="filters.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

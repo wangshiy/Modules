@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="someApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Templating with a Controller</title>
+    <link rel="stylesheet" href="../lib/style.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo left">
+          <a href="http://www.angularbootcamp.com"></a>
+          <span>Templating with a Controller</span>
+        </div>
+        <ul class="right">
+          <li>
+            <a target="_blank" href="https://docs.angularjs.org/guide/databinding">data binding docs</a>
+          </li>
+          <li><a href="../">Lesson List</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <some-component></some-component>
+      <another-component></another-component>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

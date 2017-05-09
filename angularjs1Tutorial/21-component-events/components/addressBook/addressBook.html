@@ -1,0 +1,5 @@
+<div ng-repeat="a in bc.addresses">
+  <address-entry label="{{a.heading}} Address!" addr="a"></address-entry>
+</div>
+  <button class="btn" ng-click="bc.addNew()">Add Address for {{bc.purpose}}</button>
+  <button class="btn" ng-click="bc.update()">Reset Purpose</button>

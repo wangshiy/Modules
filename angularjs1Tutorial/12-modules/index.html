@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS Modules</title>
+    <link rel="stylesheet" href="../lib/style.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo left">
+          <a href="http://www.angularbootcamp.com"></a>
+          <span>AngularJS Modules</span>
+        </div>
+        <ul class="right">
+          <li>
+            <a target="_blank" href="https://docs.angularjs.org/guide/module">Module Docs</a>
+          </li>
+          <li><a href="../">Lesson List</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <overall-app></overall-app>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <!-- What if we change the order of the files? -->
+    <script src="app.js"></script>
+    <script src="card.js"></script>
+    <script src="person.js"></script>
+    <script src="wrapper.js"></script>
+    <script src="math.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <character-name-form status="slc.formValid" name="slc.characterName"></character-name-form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <div class="character-select">
+      <h2>Choose your Archetype</h2>
+      <input type="text" placeholder="Search Archetypes" ng-model="slc.characterSearch.name">
+      <select ng-model="slc.sortBy">
+        <option value="birth_year">Birth Year</option>
+        <option value="name">Name</option>
+      </select>
+      <faceted-search search-fields="slc.characterSearch"></faceted-search>
+      <div class="flex-container">
+        <div ng-repeat="character in slc.characters | filter:slc.characterSearch | orderBy:slc.sortBy">
+          <archetype-display archetype="character" action="slc.choose(character.id)" enabled="slc.formValid"></archetype-display>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

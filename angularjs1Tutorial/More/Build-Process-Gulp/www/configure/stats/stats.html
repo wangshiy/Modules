@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Configure
+  </div>
+  <div class="panel-body">
+    <span style="color: {{pointsLeft < 0 ? 'red' : 'black'}}">
+      <div>
+        Additional Strength: 0 <input type="range" min="0" max="20" ng-model="calculatedStats().additionalStrength" style="width: 300px; display: inline-block"> 20
+      </div>
+      <div>
+        Additional Dexterity: 0 <input type="range" min="0" max="20" ng-model="calculatedStats().additionalDexterity" style="width: 300px; display: inline-block"> 20
+      </div>
+
+      <div style="font-size: {{calculatedStats().pointsUsed/20 + 14}}px">
+      Points Used: {{calculatedStats().pointsUsed}}
+      </div>
+      <div style="font-size: {{calculatedStats().pointsLeft-36}}px;">
+        Points Left: {{calculatedStats().pointsLeft}}
+      </div>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="card horizontal">
+  <div class="card-image">
+    <img ng-src="../demo-data/flags/{{cd.country.code | lowercase}}.png" class="flag">
+  </div>
+  <div class="card-stacked">
+    <div class="card-content">
+      <span class="card-title">
+        {{cd.country.name}}
+      </span>
+      <p>Capital: {{cd.country.capital | reverse}}</p>
+      <p>Largest City: {{cd.country.largest_city | initials}}</p>
+      <p>Area (sq.mi.): {{cd.country.area_sq_mi | number}}</p>
+      <p>GDP (total): {{cd.country.gdp.total | trillionDollar}}</p>
+      <p>GDP (per capita): {{cd.country.gdp.per_capita | currency:$:2}}</p>
+      <p>Top-level Domains: {{cd.country.internet_tld | oxfordComma}}</p>
+      <p>Addition: {{3 | add:5 }}</p>
+    </div>
+  </div>
+</div>

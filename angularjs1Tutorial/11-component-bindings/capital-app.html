@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">List of Capitals</span>
+    <p>Canada: {{$ctrl.canada.capital}}</p>
+    <p>USA: {{$ctrl.usa.capital}}</p>
+  </div>
+</div>
+
+<my-country country="$ctrl.canada"></my-country>
+<capital-display capital="{{$ctrl.canada.capital}}" country-name="Canada"></capital-display>
+
+<my-country country="$ctrl.usa"></my-country>
+<capital-display capital="{{$ctrl.usa.capital}}" country-name="United States"></capital-display>

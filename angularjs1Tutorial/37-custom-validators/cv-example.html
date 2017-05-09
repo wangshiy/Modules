@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Input Examples</span>
+    <form name="cve.form" novalidate>
+      <div>
+        <label for="numinput">Size (integer 0 - 100):</label>
+        <input type="number" ng-model="cve.size" name="size" min="0" max="100"
+          must-be-even>
+          <p ng-show="cve.form.size.$error.even">
+            <b>The value is not even</b>
+          </p>
+          <p ng-show="cve.form.size.$error.min || cve.form.size.$error.max">
+            <b>The value must be in range 0 to 100</b>
+          </p>
+      </div>
+      <p>
+        Model value: {{cve.size}}
+      </p>
+    </form>
+  </div>
+</div>

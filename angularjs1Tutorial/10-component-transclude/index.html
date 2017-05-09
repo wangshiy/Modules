@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Component Transclusion</title>
+    <link rel="stylesheet" href="../lib/style.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo left">
+          <a href="http://www.angularbootcamp.com"></a>
+          <span>Component Transclusion</span>
+        </div>
+        <ul class="right">
+          <li>
+            <a target="_blank" href="https://docs.angularjs.org/api/ng/directive/ngTransclude">ngTransclude docs</a>
+          </li>
+          <li><a href="../">Lesson List</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <card-block>
+        This is sample content that will never see the light of day.
+      </card-block>
+
+      <wrapper>
+        <p>This is an example of a paragraph rambling on pointlessly for many words with no punctuation or any other helpful
+          pacing as its only purpose was to use up space on the screen and in the mind without producing any value whatsover.</p>
+      </wrapper>
+
+      <wrapper>
+        <p>This paragraph is short and to the point, which is that it is just filler.</p>
+      </wrapper>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

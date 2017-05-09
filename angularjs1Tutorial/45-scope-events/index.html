@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" ng-app="exampleApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Example</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <p><a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$broadcast">Event docs</a></p>
+
+      <b>Using scope events:</b>
+      <div ng-controller="ListenerController as lc">
+        Name: {{lc.childName}}
+        <div ng-controller="EmitController as ec">
+          <input ng-model="ec.name">
+          <button ng-click="ec.changeName()">Change Name</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

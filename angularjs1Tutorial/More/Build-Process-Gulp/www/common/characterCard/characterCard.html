@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading character-card-heading text-center">
+    {{character.avatarName}}
+  </div>
+  <div class="panel-body text-center">
+    <img class="meme" ng-src="{{character.imageUrl}}">
+    <dl class="dl-horizontal">
+      <hr>
+      <dt>Archetype:</dt>
+      <dd>{{character.name}}</dd>
+      <hr>
+      <dt>Height:</dt>
+      <dd>{{character.height | StringCentimetersToNumberFeet | number:1}} ft.</dd>
+      <hr>
+      <dt>Strength:</dt>
+      <dd>{{character.strength}}</dd>
+      <hr>
+      <dt>Dexterity:</dt>
+      <dd>{{character.dexterity}}</dd>
+      <hr>
+      <dt>Gender:</dt>
+      <dd>{{character.gender}}</dd>
+      <hr>
+      <dt>Appearances:</dt>
+      <dd ng-repeat="film in character.filmNames">{{film}}</dd>
+    </dl>
+  </div>
+</div>

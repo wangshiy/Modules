@@ -1,0 +1,9 @@
+<div ng-repeat="a in bc.addresses">
+  <address-entry label="{{a.heading}} Address!" addr="a"></address-entry>
+</div>
+<button class="btn" ng-click="bc.add()">Add Address for {{bc.purpose}}</button>
+
+<expando heading="Raw Data">
+  <h5>raw stuff</h5>
+  <pre>{{bc.addresses | json}}</pre>
+</expando>

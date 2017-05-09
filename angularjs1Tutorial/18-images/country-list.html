@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-content">
+    <span class="title">Country List</span>
+      <ul class="collection">
+        <li class="collection-item avatar" ng-repeat="c in $ctrl.countries">
+          <!-- What happens with plain src? -->
+          <img class="circle" ng-src="../demo-data/flags/{{c.countryCode | lowercase}}.png">
+          <span class="title">{{c.countryName}}</span>
+        </li>
+      </ul>
+  </div>
+</div>

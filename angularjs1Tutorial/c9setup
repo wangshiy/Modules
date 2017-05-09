@@ -1,0 +1,25 @@
+# Run me with "source":
+# . c9setup
+
+echo "default node version:"
+node -v
+
+# Avoid old default Node 4.x.
+nvm install 7
+nvm use 7
+nvm alias default 7
+
+echo "running node version:"
+node -v
+
+npm install -g live-server
+npm install -g karma karma-jasmine jasmine-core karma-chrome-launcher
+npm install
+
+echo
+echo "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+echo "Use 'Preview Running Application' to obtain the served URL."
+echo "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+echo
+
+npm start --silent
